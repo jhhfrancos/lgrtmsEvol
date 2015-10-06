@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package computacionevolutiva;
+package computacionevolutiva.evolutivios;
 
+import computacionevolutiva.Funciones;
 import java.util.ArrayList;
 
 /**
