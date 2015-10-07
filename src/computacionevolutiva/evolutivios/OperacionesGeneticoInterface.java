@@ -14,8 +14,15 @@ import java.util.ArrayList;
  *
  * @author Jhh
  */
-public interface OperacionesGeneticoInterface {
-    public ArrayList<Genoma> seleccionPadres(ArrayList<Genoma> poblacion, Funciones fitness);
-    public ArrayList<Genoma> cruce(ArrayList<Genoma> padres);
-    public Genoma[] generarHijos(Genoma padre1, Genoma padre2);
+public abstract class OperacionesGeneticoInterface {
+    
+    public abstract ArrayList<Genoma> seleccionPadres(ArrayList<Genoma> poblacion, Funciones fitness);
+    public abstract ArrayList<Genoma> cruce(ArrayList<Genoma> padres);
+    public abstract Genoma[] generarHijos(Genoma padre1, Genoma padre2);
+    public double mejorFitness(ArrayList<Genoma> poblacion, Funciones fitness){
+        //TODO
+        return 0;
+    }
+    
 }
+

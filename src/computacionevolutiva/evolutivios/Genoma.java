@@ -14,31 +14,29 @@ import java.util.Random;
  */
 public class Genoma {
     public int[] cadena;
-    public Genoma padre1;
-    public Genoma padre2;
-    public Genoma hijo1;
-    public Genoma hijo2;
+    public double fitness;
     public int tamGen;
+    
     public Genoma(int tamGen){
         if((tamGen % 2) != 0 ) tamGen++;
         this.tamGen = tamGen;
         cadena = new int[this.tamGen];
         generarGen();
+        generarFitness();
     }
     public Genoma(int[] cadena){
         this.cadena = cadena;
         this.tamGen = cadena.length;
-    }
-    public Genoma(Genoma padre1, Genoma padre2){
-        this.padre1 = padre1;
-        this.padre1 = padre2;
-        this.tamGen = padre1.cadena.length;
+        generarFitness();
     }
     
     public void generarGen() {
         for(int i = 0; i < tamGen; i++){
             cadena[i] = (int) new Random().nextInt(100); // genera numero aleatorio entre 0 y 100
         }
+    }
+    public void generarFitness(){
+        //TODO
     }
     @Override
     public String toString(){

@@ -31,6 +31,7 @@ public class GeneticoBase {
             poblacion.add(new Genoma(tamGen));
         }
     }
+    
     @Override
     public String toString(){
         String result = "";

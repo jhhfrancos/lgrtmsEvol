@@ -8,13 +8,26 @@ package computacionevolutiva.evolutivios;
 
 import computacionevolutiva.Funciones;
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  *
  * @author Jhh
  */
-public class OperacionesGeneticoBase extends OperacionesGeneticoInterface{
+public class OperacionesGeneticoRuleta extends OperacionesGeneticoInterface{
+
+    @Override
+    public ArrayList<Genoma> seleccionPadres(ArrayList<Genoma> poblacion, Funciones fitness) {
+        ArrayList<Genoma> seleccionados = new ArrayList<>();
+        int tamano = poblacion.size();
+        while(tamano>0) {  //según n (tamaño) padres a seleccionar de la población se hace n lanzamientos de la ruleta.
+            Genoma gen = poblacion.get((int) (Math.random()*poblacion.size()));
+            if(Math.random()< ((double)gen.fitness) / (double)mejorFitness(poblacion, fitness)){
+                seleccionados.add(gen);
+                tamano--;
+            }
+        }
+        return new ArrayList<Genoma>(seleccionados);
+    }
 
     @Override
     public ArrayList<Genoma> cruce(ArrayList<Genoma> padres) {
@@ -27,6 +40,7 @@ public class OperacionesGeneticoBase extends OperacionesGeneticoInterface{
         }
         return hijos;
     }
+
     @Override
     public Genoma[] generarHijos(Genoma padre1, Genoma padre2) {
         int[] hijo1, hijo2;
@@ -45,14 +59,6 @@ public class OperacionesGeneticoBase extends OperacionesGeneticoInterface{
         }
         return new Genoma[]{new Genoma(hijo1),new Genoma(hijo2)};
     }
-    
 
-    @Override
-    public ArrayList<Genoma> seleccionPadres(ArrayList<Genoma> poblacion, Funciones fitness) {
-        return new ArrayList<>(poblacion);
-    }
-
-
-    
     
 }
