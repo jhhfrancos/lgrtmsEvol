@@ -12,21 +12,23 @@ import java.util.ArrayList;
  *
  * @author JhhToshiba
  */
+//Clase que contiene la informacion del algoritmo genetico: Poblacion, Tamaño de la poblacion, tamaño del Gen, funcion Fitness
 public class GeneticoBase {
     
     public ArrayList<Genoma> poblacion;
     public int tamPoblacion;
     public int tamGen;
-    public Funciones func;
+    public String func;
+    public boolean reales; //si es true: hara operaciones sobre reales, si es False, hara operaciones sobre binarios
     
-    public GeneticoBase(int tamPoblacion, int tamGen, Funciones func){
-        if((tamPoblacion % 2) != 0) tamPoblacion++;
+    public GeneticoBase(int tamPoblacion, int tamGen, String func){
+        if((tamPoblacion % 2) != 0) tamPoblacion++; //si la poblacion es inpar la vuelve par
         poblacion = new ArrayList<>();
         this.tamPoblacion = tamPoblacion;
         this.tamGen = tamGen;
         this.func = func;
     }
-    public void generarPoblacion(){
+    public void generarPoblacion(){ //Genera poblacion inicial
         for(int i = 0; i < tamPoblacion; i++){
             poblacion.add(new Genoma(tamGen));
         }

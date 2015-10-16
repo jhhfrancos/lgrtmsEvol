@@ -13,7 +13,7 @@ public class Funciones {
     
     public Funciones(){}
     
-    public double Rosenbrock(double[] values){
+    public static double Rosenbrock(double[] values){
         MathEval mathEval = new MathEval();
         if(values[0]<-2048 || values[0]>2048 || values[1]<-2048 || values[1]>2048) return -1;
         mathEval.setVariable("x1", values[0]);
@@ -21,7 +21,7 @@ public class Funciones {
         double f = mathEval.evaluate("100*(x1^2 - x2)^2 + (1 - x1)^2");
         return f;
     }
-    public double Schwefel(double[] values){
+    public static double Schwefel(double[] values){
         MathEval mathEval = new MathEval();
         double f=0;
         int n = values.length;
@@ -34,7 +34,7 @@ public class Funciones {
         f = mathEval.evaluate("418.9829 * n") + f;
         return f;
     }
-    public double Rastrigin(double values[]){
+    public static double Rastrigin(double values[]){
         MathEval mathEval = new MathEval();
         double f=0;
         int n = values.length;
@@ -49,7 +49,7 @@ public class Funciones {
         f = mathEval.evaluate("A * n") + f;
         return f;
     }
-    public double Griewangk(double values[]){
+    public static double Griewangk(double values[]){
         MathEval mathEval = new MathEval();
         double f=0;
         double g=1;

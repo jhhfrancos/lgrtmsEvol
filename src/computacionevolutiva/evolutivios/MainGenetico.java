@@ -16,7 +16,7 @@ public class MainGenetico {
 
     private void algoritmoGeneticoBase(int condicionParada, int numeroPoblacion, int tamGen, Funciones fitness) {
         GeneticoBase geneticoBase = new GeneticoBase(numeroPoblacion,tamGen,fitness);
-        OperacionesGeneticoInterface operacionesGeneticoBase = new OperacionesGeneticoBase();
+        OperacionesGeneticoInterface operacionesGeneticoBase = new OperacionesGenetico();
         ArrayList<Genoma> poblacion = new ArrayList<Genoma>();
         geneticoBase.generarPoblacion();
         poblacion = (ArrayList<Genoma>) geneticoBase.poblacion.clone();

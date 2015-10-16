@@ -14,7 +14,7 @@ import java.util.Random;
  *
  * @author Jhh
  */
-public class OperacionesGeneticoBase extends OperacionesGeneticoInterface{
+public class OperacionesGenetico extends OperacionesGeneticoInterface{
 
     @Override
     public ArrayList<Genoma> cruce(ArrayList<Genoma> padres) {
