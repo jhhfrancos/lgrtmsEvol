@@ -15,44 +15,80 @@ import java.util.Random;
  * @author Jhh
  */
 public class OperacionesGenetico extends OperacionesGeneticoInterface{
-
+    Random aleat = new Random();
     @Override
     public ArrayList<Genoma> cruce(ArrayList<Genoma> padres) {
-        Genoma[] arrayhijos = new Genoma[2];
+        Genoma[] arrayhijos = new Genoma[2]; //Par de hijos cada par de padres
         ArrayList<Genoma> hijos = new ArrayList<>(padres.size());
-        for(int i = 0; i < padres.size(); i=i+2){
-            arrayhijos = generarHijos(padres.get(i), padres.get(i+1));
-            hijos.add(arrayhijos[0]);
-            hijos.add(arrayhijos[1]);
-        }
+            for(int i = 0; i < padres.size(); i=i+2){
+                double random = Math.random();// generamos un numero al azar entre 0 y 1
+                if(random < 0.6){  //Probabilidad de cruce 60%
+                    int puntoCorte = 1 + aleat.nextInt(padres.get(i).tamGen-1);
+                    arrayhijos = generarHijos(padres.get(i), padres.get(i+1),puntoCorte);
+                    //Aplicar mutaciones a los hijos
+                    hijos.add(arrayhijos[0]);
+                    hijos.add(arrayhijos[1]);
+                } else{
+                    //Aplicar mutaciones a los hijos
+                    hijos.add(new Genoma(padres.get(i).cadena,padres.get(i).funcionFitness));
+                    hijos.add(new Genoma(padres.get(i+1).cadena,padres.get(i+1).funcionFitness));
+                }
+            }
+        
         return hijos;
     }
-    @Override
-    public Genoma[] generarHijos(Genoma padre1, Genoma padre2) {
-        int[] hijo1, hijo2;
+
+    public Genoma[] generarHijos(Genoma padre1, Genoma padre2, int puntoCorte) { //Genera los nuevos hijos y mutacion de los mismos
+        double[] hijo1, hijo2;
         if (!(padre1.cadena.length == padre2.cadena.length)) {
             return new Genoma[]{null,null};
         }
-        hijo1 = new int[padre1.cadena.length];
-        hijo2 = new int[padre2.cadena.length];
-        for(int i = 0; i < padre1.cadena.length/2; i++){
+        hijo1 = new double[padre1.cadena.length];
+        hijo2 = new double[padre2.cadena.length];
+        for(int i = 0; i < puntoCorte; i++){
             hijo1[i] = padre1.cadena[i];
             hijo2[i] = padre2.cadena[i];
         }
-        for(int i = padre1.cadena.length/2; i < padre1.cadena.length; i++){
+        for(int i = puntoCorte; i < padre1.cadena.length; i++){
             hijo1[i] = padre2.cadena[i];
             hijo2[i] = padre1.cadena[i];
         }
-        return new Genoma[]{new Genoma(hijo1),new Genoma(hijo2)};
+        
+        return new Genoma[]{new Genoma(hijo1,padre1.funcionFitness),new Genoma(hijo2,padre2.funcionFitness)};
     }
     
+    public ArrayList<Genoma> mutacion(ArrayList<Genoma> genMutar, double probMutacion){
+        ArrayList<Genoma> poblacionMutada = new ArrayList<Genoma>();
+        double randomProbMutacion;
+        double randomProbOperador = 0;
+        for(Genoma gen : genMutar){
+            for(int i = 0; i < gen.tamGen; i++){
+                randomProbMutacion = Math.random();// generamos un numero al azar entre 0 y 1
+                if(randomProbMutacion < probMutacion)
+                    randomProbOperador = Math.random();// generamos mutacion de operadores +10 o -10
+                    gen.cadena[i] = ((randomProbOperador <= 0.5)? gen.cadena[i] - 10 : gen.cadena[i] + 10); //La mutacion es sumarle 1 a la posicion
+            }
+            poblacionMutada.add(new Genoma(gen.cadena, gen.funcionFitness));
+        }
+        return poblacionMutada;
+    }
 
     @Override
-    public ArrayList<Genoma> seleccionPadres(ArrayList<Genoma> poblacion, Funciones fitness) {
-        return new ArrayList<>(poblacion);
+    public ArrayList<Genoma> seleccionPadres(ArrayList<Genoma> poblacion, String metodoSeleccion) {
+        ArrayList<Genoma> seleccionados;
+        switch (metodoSeleccion){
+            case ("Torneo"):
+                seleccionados = new ArrayList<Genoma>(torneo(poblacion));
+                break;
+            case ("Ruleta"):
+                seleccionados = new ArrayList<Genoma>(ruleta(poblacion));
+                break;
+            case ("Ranking"):
+                seleccionados = new ArrayList<Genoma>(ranking(poblacion));
+                break;
+            default:
+                seleccionados = new ArrayList<Genoma>(poblacion);
+        }
+        return seleccionados;
     }
-
-
-    
-    
 }

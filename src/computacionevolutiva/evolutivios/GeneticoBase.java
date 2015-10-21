@@ -5,7 +5,6 @@
  */
 package computacionevolutiva.evolutivios;
 
-import computacionevolutiva.Funciones;
 import java.util.ArrayList;
 
 /**
@@ -18,7 +17,7 @@ public class GeneticoBase {
     public ArrayList<Genoma> poblacion;
     public int tamPoblacion;
     public int tamGen;
-    public String func;
+    public String funcionFitness;
     public boolean reales; //si es true: hara operaciones sobre reales, si es False, hara operaciones sobre binarios
     
     public GeneticoBase(int tamPoblacion, int tamGen, String func){
@@ -26,11 +25,11 @@ public class GeneticoBase {
         poblacion = new ArrayList<>();
         this.tamPoblacion = tamPoblacion;
         this.tamGen = tamGen;
-        this.func = func;
+        this.funcionFitness = func;
     }
     public void generarPoblacion(){ //Genera poblacion inicial
         for(int i = 0; i < tamPoblacion; i++){
-            poblacion.add(new Genoma(tamGen));
+            poblacion.add(new Genoma(tamGen,funcionFitness));
         }
     }
     
@@ -39,7 +38,6 @@ public class GeneticoBase {
         String result = "";
         for(int i = 0; i < poblacion.size(); i++)
             result = result + "\n" + poblacion.get(i).toString();
-        return "poblacion\n" + result;
+        return result;
     }
-    
 }

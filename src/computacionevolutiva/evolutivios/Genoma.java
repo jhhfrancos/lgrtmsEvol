@@ -18,34 +18,49 @@ public class Genoma {
     public double fitness;
     public int tamGen;
     
-    private String funcionFitness;
+    public String funcionFitness;
     
     public Genoma(int tamGen, String funcionFitness){
         if((tamGen % 2) != 0 ) tamGen++; //Si el gen es inpar lo vuelve par (dimensiones)
         this.tamGen = tamGen;
         cadena = new double[this.tamGen];
         this.funcionFitness = funcionFitness;
-        System.out.println(Funciones.Griewangk(cadena));
-        generarGen(); 
-        generarFitness(); 
+        generarGenAleatorio(); 
+        calcularFitness(); 
     }
-    public Genoma(double[] cadena){
-        this.cadena = cadena;
+    public Genoma(double[] cadena, String funcionFitness){
+        this.cadena = cadena.clone();
         this.tamGen = cadena.length;
-        generarFitness();
+        this.funcionFitness = funcionFitness;
+        calcularFitness();
     }
     //Genera gen aleatorio
-    public void generarGen() {
+    public void generarGenAleatorio() {
         for(int i = 0; i < tamGen; i++){
-            cadena[i] = (double) new Random().nextInt(100); // genera numero aleatorio entre 0 y 100
+            cadena[i] = (double) new Random().nextInt(100); // genera numero aleatorio entre 0 y 10
         }
     }
     //Define el fitness para ese gen
-    public void generarFitness(){
-        //TODO
+    public void calcularFitness(){
+        switch (funcionFitness){
+            case ("Griewangk"):
+                fitness = Funciones.Griewangk(cadena);
+                break;
+            case("Rastrigin"):
+                fitness = Funciones.Rastrigin(cadena);
+                break;
+            case("Rosenbrock"):
+                fitness = Funciones.Rosenbrock(cadena);
+                break;
+            case("Schwefel"):
+                fitness = Funciones.Schwefel(cadena);
+                break;
+            default:
+                fitness = Funciones.other(funcionFitness, cadena);
+        }
     }
     @Override
     public String toString(){
-        return Arrays.toString(cadena);
+        return Arrays.toString(cadena) + " Fitness " + fitness;
     }
 }

@@ -64,6 +64,15 @@ public class Funciones {
         f = 1 + f - g;
         return f;
     }
+    public static double other(String function, double values[]){
+        MathEval mathEval = new MathEval();
+        double f=0;
+        int n = values.length;
+        for(int i = 0; i<n; i++)
+            mathEval.setVariable("x"+(i+1), values[i]);
+        f = f + mathEval.evaluate(function);
+        return f;
+    }
     public static void main(String args[]){
         Funciones func = new Funciones();
         double[] values = new double[120];
