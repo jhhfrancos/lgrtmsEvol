@@ -27,6 +27,14 @@ public class GeneticoBase {
         this.tamGen = tamGen;
         this.funcionFitness = func;
     }
+    public GeneticoBase(ArrayList<Genoma> poblacion, int tamGen, String func){
+        this.poblacion = new ArrayList<>();
+        for(Genoma gen: poblacion)
+            this.poblacion.add(new Genoma(gen.cadena,func));
+        this.tamPoblacion = poblacion.size();
+        this.tamGen = tamGen;
+        this.funcionFitness = func;
+    }
     public void generarPoblacion(){ //Genera poblacion inicial
         for(int i = 0; i < tamPoblacion; i++){
             poblacion.add(new Genoma(tamGen,funcionFitness));
