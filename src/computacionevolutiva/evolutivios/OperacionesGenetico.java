@@ -30,8 +30,8 @@ public class OperacionesGenetico extends OperacionesGeneticoInterface{
                     hijos.add(arrayhijos[1]);
                 } else{
                     //Aplicar mutaciones a los hijos
-                    hijos.add(new Genoma(padres.get(i).cadena,padres.get(i).funcionFitness));
-                    hijos.add(new Genoma(padres.get(i+1).cadena,padres.get(i+1).funcionFitness));
+                    hijos.add(new Genoma(padres.get(i).cadena,padres.get(i).funcionFitness, padres.get(i).restricciones));
+                    hijos.add(new Genoma(padres.get(i+1).cadena,padres.get(i+1).funcionFitness, padres.get(i+1).restricciones));
                 }
             }
         
@@ -54,7 +54,7 @@ public class OperacionesGenetico extends OperacionesGeneticoInterface{
             hijo2[i] = padre1.cadena[i];
         }
         
-        return new Genoma[]{new Genoma(hijo1,padre1.funcionFitness),new Genoma(hijo2,padre2.funcionFitness)};
+        return new Genoma[]{new Genoma(hijo1,padre1.funcionFitness,padre1.restricciones),new Genoma(hijo2,padre2.funcionFitness,padre2.restricciones)};
     }
     
     public ArrayList<Genoma> mutacion(ArrayList<Genoma> genMutar, double probMutacion){
@@ -66,9 +66,13 @@ public class OperacionesGenetico extends OperacionesGeneticoInterface{
                 randomProbMutacion = Math.random();// generamos un numero al azar entre 0 y 1
                 if(randomProbMutacion < probMutacion)
                     randomProbOperador = Math.random();// generamos mutacion de operadores +10 o -10
-                    gen.cadena[i] = ((randomProbOperador <= 0.5)? gen.cadena[i] - 10 : gen.cadena[i] + 10); //La mutacion es sumarle 1 a la posicion
+                    if(randomProbOperador <= 0.5){
+                        gen.cadena[i] = (gen.cadena[i] - 10) % gen.restricciones[0] ;
+                    } else{
+                        gen.cadena[i] = (gen.cadena[i] + 10) % gen.restricciones[1];
+                    }
             }
-            poblacionMutada.add(new Genoma(gen.cadena, gen.funcionFitness));
+            poblacionMutada.add(new Genoma(gen.cadena, gen.funcionFitness,gen.restricciones));
         }
         return poblacionMutada;
     }

@@ -24,7 +24,7 @@ public abstract class OperacionesGeneticoInterface {
     public abstract ArrayList<Genoma> mutacion(ArrayList<Genoma> genMutar, double probMutacion);
     
     public double mejorFitness(ArrayList<Genoma> poblacion){ //Minimizar la funcion de fitness
-        double mejor = 99999;
+        double mejor = 999999999E9;
         for (Genoma gen : poblacion) 
             if (gen.fitness < mejor) 
                 mejor = gen.fitness;

@@ -28,25 +28,8 @@ public class SimulatedAnnealing {
         double[] nextValues = new double[values.length];
         while (iter<=iteraciones){
             while (k < K && a < A){
-                
-                generar j en N(i)
-                if (c(j) – c(i) < 0)
-                        i = j
-                        a = a + 1
-                else
-                        generar un numero r al azar (pseudo-random number)
-                        if (r < exp [(c(i) – c(j))/T])
-                                i = j
-                                a = a + 1
-                k = k + 1
             }
         }
-	T = T
-	K = K
-	k = 0
-	a = 0
- mostrar i, c(i)
-
     }
 }
 

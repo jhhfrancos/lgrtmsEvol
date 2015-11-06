@@ -18,26 +18,29 @@ public class GeneticoBase {
     public int tamPoblacion;
     public int tamGen;
     public String funcionFitness;
+    public double[] restricciones;
     public boolean reales; //si es true: hara operaciones sobre reales, si es False, hara operaciones sobre binarios
     
-    public GeneticoBase(int tamPoblacion, int tamGen, String func){
+    public GeneticoBase(int tamPoblacion, int tamGen, String func, double[] restricciones){
         if((tamPoblacion % 2) != 0) tamPoblacion++; //si la poblacion es inpar la vuelve par
         poblacion = new ArrayList<>();
         this.tamPoblacion = tamPoblacion;
         this.tamGen = tamGen;
         this.funcionFitness = func;
+        this.restricciones = restricciones;
     }
-    public GeneticoBase(ArrayList<Genoma> poblacion, int tamGen, String func){
+    public GeneticoBase(ArrayList<Genoma> poblacion, int tamGen, String func, double[] restricciones){
         this.poblacion = new ArrayList<>();
         for(Genoma gen: poblacion)
-            this.poblacion.add(new Genoma(gen.cadena,func));
+            this.poblacion.add(new Genoma(gen.cadena,func,restricciones));
         this.tamPoblacion = poblacion.size();
         this.tamGen = tamGen;
         this.funcionFitness = func;
+        this.restricciones = restricciones;
     }
     public void generarPoblacion(){ //Genera poblacion inicial
         for(int i = 0; i < tamPoblacion; i++){
-            poblacion.add(new Genoma(tamGen,funcionFitness));
+            poblacion.add(new Genoma(tamGen,funcionFitness,restricciones));
         }
     }
     

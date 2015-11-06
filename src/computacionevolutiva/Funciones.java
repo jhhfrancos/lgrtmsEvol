@@ -5,6 +5,9 @@
  */
 package computacionevolutiva;
 
+import java.util.Arrays;
+import java.util.Random;
+
 /**
  *
  * @author JhhToshiba
@@ -73,18 +76,40 @@ public class Funciones {
         f = f + mathEval.evaluate(function);
         return f;
     }
-    public static void main(String args[]){
-        Funciones func = new Funciones();
-        double[] values = new double[120];
-        double f;
-        double j=0;
-        /*double f = func.Rosenbrock(values);*/
-        values[0] = 0;
-        for(int i=0; j<60; i++){
-            j=j+0.1;
-            values[0] = j; 
-            f = func.Griewangk(values);
-            System.out.println(j+",");
+    public static double F1(double[] values){
+        MathEval mathEval = new MathEval();
+        double f=0;
+        int D = values.length;
+        mathEval.setVariable("D", D);
+        for(int i = 0; i<D; i++){
+            if(values[i]<-100 || values[i]>100) return -1;
+            mathEval.setVariable("x"+(i+1), values[i]);
+            f = f + mathEval.evaluate("x"+(i+1)+ "^2 * 10^((6*((("+(i+1)+"-1)/(D-1)))))");
         }
+        return f;
+    }
+    public static double F2(double[] values){
+        MathEval mathEval = new MathEval();
+        double f=0;
+        int n = values.length;
+        int A = 10;
+        mathEval.setVariable("n", n);
+        mathEval.setVariable("A", A);
+        for(int i = 0; i<n; i++){
+            if(values[i]<-5.12 || values[i]>5.12) return -1;
+            mathEval.setVariable("x"+(i+1), values[i]);
+            f = f + mathEval.evaluate("(x"+(i+1)+"^2 - (A * cos(2*pi*x"+(i+1)+")))");
+        }
+        f = mathEval.evaluate("A * n") + f;
+        return f;
+    }
+    public static void main(String args[]){
+        double[] values = new double[100];
+        Random rand = new Random();
+        for(int i=0; i<values.length; i++){
+            values[i] = (double)rand.nextInt((100+100) + 1) -100;
+        }
+        System.out.println(Arrays.toString(values));
+        System.out.println(Funciones.F1(values));
     }
 }

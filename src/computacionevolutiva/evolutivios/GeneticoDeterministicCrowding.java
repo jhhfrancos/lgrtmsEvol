@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package computacionevolutiva.Funico;
+
+package computacionevolutiva.evolutivios;
 
 /**
  *
- * @author JhhToshiba
+ * @author Jhh
  */
-public class NodoOperacion {
+public class GeneticoDeterministicCrowding {
     
 }
