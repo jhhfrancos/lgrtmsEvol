@@ -93,6 +93,8 @@ public abstract class OperacionesGeneticoInterface {
         }
         return new ArrayList<Genoma>(seleccionados);
     }
+
+    
     
     
 }
