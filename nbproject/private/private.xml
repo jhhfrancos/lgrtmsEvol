@@ -2,17 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Jhh/Documents/NetBeansProjects/lgrtmsEvol/src/computacionevolutiva/SimulatedAnnealing.java</file>
-            <file>file:/C:/Users/Jhh/Documents/NetBeansProjects/lgrtmsEvol/src/computacionevolutiva/evolutivios/OperacionesDeterministicCrowding.java</file>
-            <file>file:/C:/Users/Jhh/Documents/NetBeansProjects/lgrtmsEvol/src/computacionevolutiva/evolutivios/Genoma.java</file>
-            <file>file:/C:/Users/Jhh/Documents/NetBeansProjects/lgrtmsEvol/src/computacionevolutiva/Funico/NodoOperacion.java</file>
-            <file>file:/C:/Users/Jhh/Documents/NetBeansProjects/lgrtmsEvol/src/computacionevolutiva/evolutivios/OperacionesGeneticoInterface.java</file>
-            <file>file:/C:/Users/Jhh/Documents/NetBeansProjects/lgrtmsEvol/src/computacionevolutiva/evolutivios/OperacionesGenetico.java</file>
-            <file>file:/C:/Users/Jhh/Documents/NetBeansProjects/lgrtmsEvol/src/computacionevolutiva/pruebas.java</file>
-            <file>file:/C:/Users/Jhh/Documents/NetBeansProjects/lgrtmsEvol/src/computacionevolutiva/evolutivios/MainGenetico.java</file>
-            <file>file:/C:/Users/Jhh/Documents/NetBeansProjects/lgrtmsEvol/src/computacionevolutiva/evolutivios/GeneticoBase.java</file>
-            <file>file:/C:/Users/Jhh/Documents/NetBeansProjects/lgrtmsEvol/src/computacionevolutiva/Funciones.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
